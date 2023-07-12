@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nobet/controllers/app_controller.dart';
 import 'package:nobet/pages/home.dart';
 import 'package:nobet/pages/login.dart';
 import 'package:nobet/pages/login_banking.dart';
@@ -11,15 +12,24 @@ class AppWidget extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.blue, brightness: Brightness.dark),
-      initialRoute: '/start',
-      routes: {
-        '/start': (context) => const StartPage(),
-        '/login': (context) => const LoginPage(),
-        '/login/questions': (context) => const LoginQuestionsPage(),
-        '/login/banking': (context) => const LoginBankingPage(),
-        '/home': (context) => const HomePage(),
+    return AnimatedBuilder(
+      animation: AppController.instance,
+      builder: (context, child) {
+        return MaterialApp(
+          theme: ThemeData(
+              primarySwatch: Colors.amber,
+              brightness: AppController.instance.isDarkTheme
+                  ? Brightness.dark
+                  : Brightness.light),
+          initialRoute: '/start',
+          routes: {
+            '/start': (context) => const StartPage(),
+            '/login': (context) => const LoginPage(),
+            '/login/questions': (context) => const LoginQuestionsPage(),
+            '/login/banking': (context) => const LoginBankingPage(),
+            '/home': (context) => const HomePage(),
+          },
+        );
       },
     );
   }
