@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nobet/controllers/app_controller.dart';
+import 'package:nobet/views/learn.dart';
+import 'package:nobet/views/learn_list.dart';
 import 'package:nobet/views/roulette.dart';
 
 class HomePage extends StatelessWidget {
@@ -25,6 +27,7 @@ class HomePage extends StatelessWidget {
                     accountEmail:
                         Text('${AppController.instance.noCoins} noCoins'),
                   ),
+                  const LearnList(),
                 ],
               ),
             ),
@@ -53,8 +56,7 @@ class HomePage extends StatelessWidget {
             body: const TabBarView(
               children: [
                 Roulette(),
-                // TODO
-                Text('aaaa'),
+                Learn(),
               ],
             ),
           ),
