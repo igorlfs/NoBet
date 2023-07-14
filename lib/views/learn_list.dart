@@ -10,13 +10,12 @@ class LearnList extends StatefulWidget {
 }
 
 class _LearnListState extends State<LearnList> {
-  final String fileListPath = 'assets/helpers/lessons.txt';
   final controller = LearnListController();
 
   @override
   void initState() {
     super.initState();
-    controller.readLessonPaths(fileListPath);
+    controller.readLessonPaths();
   }
 
   @override
@@ -44,7 +43,7 @@ class _LearnListState extends State<LearnList> {
     }
   }
 
-  _success() {
+  Widget _success() {
     return Expanded(
       child: ListView.builder(
         itemCount: controller.fileList.length,

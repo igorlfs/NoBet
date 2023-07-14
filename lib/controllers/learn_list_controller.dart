@@ -8,7 +8,7 @@ class LearnListController {
 
   final state = ValueNotifier<LearnListState>(LearnListState.start);
 
-  Future<void> readLessonPaths(String filePath) async {
+  Future<void> readLessonPaths() async {
     state.value = LearnListState.loading;
 
     try {

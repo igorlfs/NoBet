@@ -16,7 +16,7 @@ class SkipSignup extends StatelessWidget {
             return AlertDialog(
               title: const Text('Boas Vindas!'),
               content: const Text(
-                  'Isso mesmo! Nós da NoBet, pensando na sua conveniência, permitimos com que você aposte sem fazer uma conta!'),
+                  'Isso mesmo! Nós, da NoBet, pensando em sua conveniência, permitimos com que você aposte sem fazer uma conta!'),
               actions: <Widget>[
                 TextButton(
                   onPressed: () {

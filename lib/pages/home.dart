@@ -32,14 +32,6 @@ class HomePage extends StatelessWidget {
               ),
             ),
             appBar: AppBar(
-              actions: [
-                Switch(
-                  value: AppController.instance.isDarkTheme,
-                  onChanged: (value) {
-                    AppController.instance.changeTheme();
-                  },
-                )
-              ],
               bottom: const TabBar(
                 indicatorColor: Colors.amber,
                 tabs: [

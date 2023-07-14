@@ -23,45 +23,35 @@ class _LearnState extends State<Learn> {
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-        animation: AppController.instance.learnState,
-        builder: (context, child) {
-          return stateManagement(AppController.instance.learnState.value);
-        });
+      animation: AppController.instance.learnState,
+      builder: (context, child) {
+        return stateManagement(AppController.instance.learnState.value);
+      },
+    );
   }
 
-  stateManagement(LearnState state) {
+  Widget stateManagement(LearnState state) {
     switch (state) {
       case LearnState.start:
-        return _start();
+        return Container();
       case LearnState.loading:
-        return _loading();
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
       case LearnState.error:
-        return _error();
+        return Center(
+          child: Text(
+            'Ocorreu um erro ao ler a lição ${AppController.instance.markdownFilePath}',
+          ),
+        );
       case LearnState.success:
         return _success();
       default:
-        return _start();
+        return Container();
     }
   }
 
-  _start() {
-    return Container();
-  }
-
-  _loading() {
-    return const Center(
-      child: CircularProgressIndicator(),
-    );
-  }
-
-  _error() {
-    return Center(
-      child: Text(
-          'Ocorreu um erro ao ler a lição ${AppController.instance.markdownFilePath}'),
-    );
-  }
-
-  _success() {
+  Widget _success() {
     return Markdown(
       data: AppController.instance.markdownContent,
       selectable: true,

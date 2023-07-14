@@ -11,17 +11,12 @@ class AppController extends ChangeNotifier {
 
   static AppController instance = AppController();
 
-  void changeTheme() {
-    isDarkTheme = !isDarkTheme;
-    notifyListeners();
-  }
-
   void increaseBlazes() {
     blazes++;
     notifyListeners();
   }
 
-  blazeString() {
+  String blazeString() {
     if (blazes == 0) {
       return '';
     } else {
