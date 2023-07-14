@@ -78,7 +78,26 @@ class _RouletteState extends State<Roulette> {
           onPressed: () {
             if (controller.odds != RouletteController.invalid) {
               final name = controller.colorName;
-              if (controller.bet()) {
+              if (controller.bet(0.001)) {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Você ganhou um Blaze!'),
+                      content: Image.asset('assets/images/blaze.png'),
+                      actions: <Widget>[
+                        TextButton(
+                          child: const Text('Fechar'),
+                          onPressed: () {
+                            AppController.instance.increaseBlazes();
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              } else if (controller.bet()) {
                 _popup(
                     context: context,
                     title: 'Você VENCEU',

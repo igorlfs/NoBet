@@ -4,23 +4,37 @@ import 'package:flutter/services.dart';
 class AppController extends ChangeNotifier {
   bool isDarkTheme = true;
   int noCoins = 0;
+  int blazes = 0;
   String markdownFilePath = 'assets/markdown/Básico.md';
   final learnState = ValueNotifier<LearnState>(LearnState.start);
   String markdownContent = '';
 
   static AppController instance = AppController();
 
-  changeTheme() {
+  void changeTheme() {
     isDarkTheme = !isDarkTheme;
     notifyListeners();
   }
 
-  increaseNoCoins() {
+  void increaseBlazes() {
+    blazes++;
+    notifyListeners();
+  }
+
+  blazeString() {
+    if (blazes == 0) {
+      return '';
+    } else {
+      return ' $blazes 🔥';
+    }
+  }
+
+  void increaseNoCoins() {
     noCoins += 300;
     notifyListeners();
   }
 
-  decreaseNoCoins() {
+  void decreaseNoCoins() {
     noCoins -= 100;
     notifyListeners();
   }

@@ -25,8 +25,8 @@ class RouletteController {
     }
   }
 
-  bool bet() {
-    return _random.nextDouble() < odds;
+  bool bet([double? odds]) {
+    return _random.nextDouble() < (odds ?? this.odds);
   }
 }
 

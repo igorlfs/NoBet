@@ -24,8 +24,8 @@ class HomePage extends StatelessWidget {
                       child: Image.asset('assets/images/logo.png'),
                     ),
                     accountName: const Text('Apostador Anônimo'),
-                    accountEmail:
-                        Text('${AppController.instance.noCoins} noCoins'),
+                    accountEmail: Text(
+                        '${AppController.instance.noCoins} noCoins${AppController.instance.blazeString()}'),
                   ),
                   const LearnList(),
                 ],
