@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -6,14 +8,18 @@ class LearnListController {
 
   final state = ValueNotifier<LearnListState>(LearnListState.start);
 
-  // TODO Ler o diretório (isso aqui é uma gambiarra)
-  Future<void> readFileAndSplitLines(String filePath) async {
+  Future<void> readLessonPaths(String filePath) async {
     state.value = LearnListState.loading;
 
     try {
-      fileList = (await rootBundle.loadString(filePath)).split('\n');
-      // Por motivos de Linux, é como se a última linha tivesse dois '\n'
-      fileList.removeLast();
+      // Cortesia de https://stackoverflow.com/a/56555070
+      final manifestContent = await rootBundle.loadString('AssetManifest.json');
+      final Map<String, dynamic> manifestMap = json.decode(manifestContent);
+
+      final imagePaths = manifestMap.keys
+          .where((String key) => key.contains('markdown/'))
+          .toList();
+      fileList = imagePaths;
       state.value = LearnListState.success;
     } catch (e) {
       state.value = LearnListState.error;

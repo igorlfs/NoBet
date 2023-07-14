@@ -16,7 +16,7 @@ class _LearnListState extends State<LearnList> {
   @override
   void initState() {
     super.initState();
-    controller.readFileAndSplitLines(fileListPath);
+    controller.readLessonPaths(fileListPath);
   }
 
   @override
@@ -29,35 +29,19 @@ class _LearnListState extends State<LearnList> {
     );
   }
 
-  stateManagement(LearnListState state) {
+  Widget stateManagement(LearnListState state) {
     switch (state) {
       case LearnListState.start:
-        return _start();
+        return Container();
       case LearnListState.loading:
-        return _loading();
-      case LearnListState.error:
-        return _error();
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
       case LearnListState.success:
         return _success();
       default:
-        return _start();
+        return Container();
     }
-  }
-
-  _start() {
-    return Container();
-  }
-
-  _loading() {
-    return const Center(
-      child: CircularProgressIndicator(),
-    );
-  }
-
-  _error() {
-    return const Center(
-      child: Text('Ocorreu um erro ao ler a pasta com as lições'),
-    );
   }
 
   _success() {
@@ -68,14 +52,15 @@ class _LearnListState extends State<LearnList> {
           final path = controller.fileList[index];
           var strippedPath = '';
           if (path.length > 3) {
-            strippedPath = path.substring(0, path.length - 3);
+            final lastSlash = path.lastIndexOf('/');
+            strippedPath = path.substring(lastSlash + 1, path.length - 3);
           }
           return ListTile(
             title: Text(
               '${index + 1}. $strippedPath',
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
-            onTap: () {
+            onTap: () async {
               AppController.instance.loadFile(path);
             },
           );

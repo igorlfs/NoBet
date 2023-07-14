@@ -40,12 +40,11 @@ class AppController extends ChangeNotifier {
   }
 
   Future<void> loadFile(String file) async {
-    final newPath = 'assets/markdown/$file';
     learnState.value = LearnState.loading;
 
     try {
       AppController.instance.markdownContent =
-          await rootBundle.loadString(newPath);
+          await rootBundle.loadString(file);
       learnState.value = LearnState.success;
     } catch (e) {
       learnState.value = LearnState.error;
