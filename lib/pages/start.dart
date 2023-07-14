@@ -14,9 +14,6 @@ class StartPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Logo(),
-            const SizedBox(
-              height: 10,
-            ),
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pushNamed('/login');

@@ -35,14 +35,25 @@ class _LoginQuestionsPageState extends State<LoginQuestionsPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Logo(),
-              const SizedBox(
-                height: 10,
-              ),
               Card(
                 child: Padding(
                   padding: const EdgeInsets.all(8),
                   child: Column(
                     children: [
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          'Por favor, responda as seguintes perguntas para completar seu cadastro',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       const Text(
                         'Qual era o nome do seu primeiro bichinho de estimação?',
                       ),

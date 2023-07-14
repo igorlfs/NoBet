@@ -22,10 +22,11 @@ class _LearnListState extends State<LearnList> {
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-        animation: controller.state,
-        builder: (context, child) {
-          return stateManagement(controller.state.value);
-        });
+      animation: controller.state,
+      builder: (context, child) {
+        return stateManagement(controller.state.value);
+      },
+    );
   }
 
   stateManagement(LearnListState state) {

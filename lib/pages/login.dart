@@ -34,9 +34,6 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Logo(),
-              const SizedBox(
-                height: 10,
-              ),
               Card(
                 child: Padding(
                   padding: const EdgeInsets.all(8),
